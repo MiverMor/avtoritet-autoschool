@@ -17,7 +17,7 @@
     />
     <meta name="author" content="Автошкола Авторитет" />
     <meta name="theme-color" content="#0B0E13" />
-    <link rel="icon" href="./assets/logo.png" type="image/x-icon" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/x-icon" />
     <meta property="og:title" content="Автошкола «Авторитет»" />
     <meta
       property="og:description"
@@ -33,5 +33,65 @@
     />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <div class="header__container container">
+        <a href="/" class="header__logo">
+          <img src="./assets/images/logo.png" alt="Автошкола Авторитет" />
+        </a>
+
+        <nav class="header__nav">
+          <ul class="header__menu">
+            <li class="header__item">
+              <a href="#hero" class="header__link"> Главная </a>
+            </li>
+
+            <li class="header__item">
+              <a href="#advantages" class="header__link"> Преимущества </a>
+            </li>
+
+            <li class="header__item">
+              <a href="#mission" class="header__link"> Миссия </a>
+            </li>
+
+            <li class="header__item">
+              <a href="#gallery" class="header__link"> Галерея </a>
+            </li>
+
+            <li class="header__item">
+              <a href="#prices" class="header__link"> Цены </a>
+            </li>
+
+            <li class="header__item">
+              <a href="#reviews" class="header__link"> Отзывы </a>
+            </li>
+
+            <li class="header__item">
+              <a href="#documents" class="header__link"> Документы </a>
+            </li>
+
+            <li class="header__item">
+              <a href="#contacts" class="header__link"> Контакты </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header__actions">
+          <a href="#" class="header__button header__button--whatsapp">
+            WhatsApp
+          </a>
+
+          <button class="header__button header__button--primary">
+            Записаться
+          </button>
+        </div>
+
+        <button class="header__burger" type="button" aria-label="Открыть меню">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+  </body>
 </html>

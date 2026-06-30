@@ -1,0 +1,87 @@
+@use '../base/variables' as *
+@use '../base/media' 
+
+.header
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 100
+
+  padding: 12px 0
+
+  border-bottom: 1px solid $card-stroke
+  &__container
+    display: flex
+    align-items: center
+    justify-content: space-between
+    // gap: 40px
+  &__logo
+    flex-shrink: 0
+    img
+      width: 250px
+  &__menu
+    display: flex
+    align-items: center
+    gap: 30px
+  &__actions
+    display: flex
+    gap: 20px
+  &__item 
+    list-style-type: none
+  &__link
+    position: relative
+
+    font-size: 18px
+    font-weight: 400
+
+    transition: color .3s
+    &::after
+      content: ''
+      position: absolute
+      left: 0
+      bottom: -8px
+
+      width: 0
+      height: 2px
+
+      background: $accent
+      transition: width .3s
+
+    &:hover
+      color: $accent
+
+      &::after
+        width: 100%
+  &__actions
+    display: flex
+    align-items: center
+    gap: 20px
+    flex-shrink: 0
+  &__button
+    display: flex
+    align-items: center
+    justify-content: center
+
+    padding: 16px 25px
+
+    border-radius: 15px
+
+    font-size: 18px
+    font-weight: 500
+
+    transition: all .3s
+    &--whatsapp
+      background: $card-bg
+      border: 1px solid $card-stroke
+
+      &:hover
+        background: $card-bg-hover
+    &--primary
+      background: $accent
+
+      &:hover
+        transform: translateY(-2px)
+        box-shadow: 0 10px 30px $btn-primary-shadow
+  &__burger
+    display: none

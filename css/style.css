@@ -430,6 +430,12 @@ button {
 .header__link:hover::after {
   width: 100%;
 }
+.header__link.active {
+  color: #DF6018;
+}
+.header__link.active::after {
+  width: 100%;
+}
 .header__actions {
   display: flex;
   align-items: center;

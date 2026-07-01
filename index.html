@@ -40,7 +40,11 @@
           <img src="./assets/images/logo.png" alt="Автошкола Авторитет" />
         </a>
 
-        <nav class="header__nav">
+        <nav
+          class="header__nav"
+          id="mobile-menu"
+          aria-label="Основная навигация"
+        >
           <ul class="header__menu">
             <li class="header__item">
               <a href="#hero" class="header__link"> Главная </a>
@@ -74,6 +78,15 @@
               <a href="#contacts" class="header__link"> Контакты </a>
             </li>
           </ul>
+          <div class="header__mobile-actions">
+            <a href="#" class="header__button header__button--whatsapp">
+              WhatsApp
+            </a>
+
+            <a href="#" class="header__button header__button--primary">
+              Записаться
+            </a>
+          </div>
         </nav>
 
         <div class="header__actions">
@@ -86,13 +99,21 @@
           </a>
         </div>
 
-        <button class="header__burger" type="button" aria-label="Открыть меню">
+        <button
+          class="header__burger"
+          aria-label="Открыть меню"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          type="button"
+        >
           <span></span>
           <span></span>
           <span></span>
         </button>
       </div>
     </header>
+    <div class="overlay"></div>
+
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>

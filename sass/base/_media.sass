@@ -1,0 +1,19 @@
+@use './variables' as *
+=desktop
+  @media (max-width: $desktop)
+    @content
+
+=laptop
+  @media (max-width: $laptop)
+    @content
+
+=tablet
+  @media (max-width: $tablet)
+    @content
+
+=mobile
+  @media (max-width: $mobile)
+    @content
+=mobile-sm
+  @media (max-width: $mobile-sm)
+    @content

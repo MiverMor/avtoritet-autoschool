@@ -384,6 +384,7 @@ button {
   z-index: 100;
   padding: 12px 0;
   border-bottom: 1px solid #161B23;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
 }
 .header__container {
   display: flex;
@@ -468,4 +469,11 @@ button {
 }
 .header__burger {
   display: none;
+}
+
+.header.scrolled {
+  background: rgba(11, 14, 19, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
 }/*# sourceMappingURL=style.css.map */

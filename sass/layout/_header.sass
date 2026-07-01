@@ -11,6 +11,8 @@
   padding: 12px 0
 
   border-bottom: 1px solid $card-stroke
+
+  transition: background-color .3s ease, backdrop-filter .3s ease, box-shadow .3s ease
   &__container
     display: flex
     align-items: center
@@ -90,3 +92,11 @@
         box-shadow: 0 10px 30px $btn-primary-shadow
   &__burger
     display: none
+
+.header.scrolled
+  background: rgba(11,14,19,.88)
+
+  backdrop-filter: blur(18px)
+  -webkit-backdrop-filter: blur(18px)
+
+  box-shadow: 0 8px 25px rgba(0,0,0,.35)

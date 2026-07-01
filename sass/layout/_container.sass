@@ -1,5 +1,27 @@
 @use '../base/variables' as *
+@use '../base/_media' as *
 .container
   max-width: 1578px
   width: 100%
   margin: 0 auto
+
++desktop
+  .container
+    max-width: 1250px
++laptop 
+  .container
+    max-width: 1100px
+
++tablet 
+  .container
+    max-width: 770px
+
++mobile 
+  .container
+    max-width: 720px
+    padding-inline: 20px
+
++mobile-sm 
+  .container
+    max-width: 100%
+    padding-inline: 16px

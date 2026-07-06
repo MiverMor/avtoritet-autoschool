@@ -1,0 +1,482 @@
+@use '../base/variables' as *
+@use '../base/media' as *
+
+.hero
+  position: relative
+
+  width: 100%
+  min-height: 100vh
+
+  overflow: hidden
+  isolation: isolate
+  &__content
+    position: relative
+
+    z-index: 5
+
+    width: 888px
+
+    margin-top: 18vh
+    // height: 100vh
+
+  &__badge 
+    display: inline-flex
+    align-items: center
+    gap: 10px
+
+    padding: 10px 20px 10px 30px
+
+    margin-bottom: 35px
+
+    border: 1px solid $card-stroke
+    border-radius: 20px
+
+    background: $card-bg
+    backdrop-filter: blur(16px)
+
+    font-size: 18px
+    font-weight: 500
+
+    color: $text-secondary
+
+    overflow: hidden
+    &-dot
+      width: 10px
+      height: 10px
+
+      border-radius: 50%
+
+      background: $accent
+
+      box-shadow: 0 0 18px rgba($accent,.7)
+  &__title
+    display: inline-block
+    max-width: 860px
+    margin-bottom: 20px
+  &__description
+    display: inline-block
+
+    font-weight: 500
+    font-size: 26px
+    line-height: 160%
+
+    width: 715px
+
+    color: $text-secondary
+
+    margin-bottom: 95px
+  &__buttons 
+    display: flex
+    align-items: center
+    gap: 17px
+
+    margin-bottom: 65px
+  &__button
+    &--primary
+      background: $accent
+
+      box-shadow: 0 20px 40px rgba($accent,.25)
+
+      will-change: transform
+      &:hover
+        transform: translateY(-3px)
+
+        box-shadow: 0 25px 50px rgba($accent,.45)
+    &--secondary
+      font-weight: 500
+
+      background: $card-bg
+
+      border: 1px solid $card-stroke
+
+      backdrop-filter: blur(14px)
+
+      will-change: transform
+      &:hover
+        background: rgba(25,30,36,.9)
+
+        transform: translateY(-3px)
+
+  &__stats
+    display: flex
+    align-items: center
+    gap: 20px
+  &__stat 
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    gap: 10px
+
+    background: $card-bg
+
+    border: 1px solid $card-stroke
+    border-radius: 20px
+    padding: 20px 44px
+
+    width: 207px
+
+    transition: .35s ease
+
+    will-change: transform
+    &:hover
+      transform: translateY(-5px)
+
+      border-color: rgba($accent,.35)
+
+      background: rgba(24,29,36,.75)
+    &-number 
+      font-family: "Roboto", sans-serif
+      font-weight: 700
+      font-size: 26px
+      text-align: center
+      color: $accent
+    &-text
+      font-weight: 500
+      font-size: 16px
+      text-align: center
+      color: $text-primary
+  &__visual
+    position: absolute
+
+    right: 0
+    bottom: 0
+
+    width: 62%
+    height: 100%
+
+    z-index: 1
+
+    pointer-events: auto
+  &__car
+    position: absolute
+
+    right:  calc(-156 / 1800 * 100vw)
+    bottom: 0
+    // top: 100%
+
+    width: calc(1242 / 1800 * 100vw)
+
+    z-index: 5
+
+    will-change: transform
+    transform-origin: center bottom
+    pointer-events: none
+  &__image
+    position: relative
+
+    bottom: auto
+    right: auto
+
+    max-width: 100%
+
+    // transform-origin: center bottom
+
+    // will-change: transform
+    // z-index: 5
+    // pointer-events: none
+  &__headlights
+    position: absolute
+
+    inset: 0
+    right:  auto
+    bottom: auto
+
+    max-width: 100%
+
+    opacity: 0
+
+    pointer-events: none
+
+    z-index: 6
+
+    will-change: opacity
+  &__circle
+    position: absolute
+
+    right: calc(121 / 1800 * 100vw)
+    top: 20vh
+    // top: calc(196 / 1080 * 100vh)
+
+    width: 650px
+    transform-origin: center
+    pointer-events: none
+  &__glow
+    position: absolute
+
+    z-index: 0
+
+    right: 0
+    bottom: 0
+
+    width: 1095px
+    height: 1023px
+
+    background: radial-gradient(55.21% 35.95%  at 78.43% 51.2%, $accent 0%, $bg 100%)
+
+    opacity: .8
+
+    transition: opacity .4s ease
+    pointer-events: none
+  
+// --------------- адаптив ---------------------------
+@media (min-height: 1400px) 
+  .hero 
+    min-height: 100%
+    width: 100rem
+    margin: 0 auto
+    // overflow: visible
+    &__visual
+      width: 50%
+    &__car
+      width: 1242px
+      right: -156px
+    &__circle
+      right: 121px
+      top: 14vh
+
++desktop 
+  .hero
+    &__content
+      width: 760px
+    &__badge 
+      font-size: 16px
+      border-radius: 1.25rem
+      margin-bottom: 30px
+    &__title
+      max-width: 720px
+
+      font-size: 62px
+    &__description
+      width: 620px
+
+      font-size: 22px
+
+      margin-bottom: 60px
+
+    &__stats
+      gap: 16px
+
+    &__stat
+      width: 180px
+
+      padding: 18px 30px
+
+    &__car
+      width: 900px
+
+    &__circle
+      width: 480px
+      top: 160px
+      right: 90px
+
+    &__glow
+      width: 900px
+      height: 850px
+      background: radial-gradient(42.21% 26.95% at 76.43% 54.2%, $accent 0%, $bg 100%)
++laptop
+  .hero
+
+    &__content
+      // width: 640px
+
+      // padding-top: 170px
+    &__badge
+      font-size: 14px
+      padding: 5px 15px 5px 20px
+      &-dot 
+        width: 8px
+        height: 8px
+    &__title
+      font-size: 50px
+      max-width: 580px
+    &__description
+      width: 520px
+
+      font-size: 18px
+
+    &__buttons
+      gap: 14px
+      margin-bottom: 45px
+    &__button
+      font-size: 16px
+      height: 60px
+      padding: 0 25px
+
+    &__stats
+      gap: 15px
+
+    &__stat
+      width: 160px
+
+      padding: 18px 18px
+      
+    &__visual
+      width: 50%
+    &__car
+      width: 800px
+
+      right: -100px
+      bottom: 20px
+
+    &__circle
+      width: 450px
+      top: 140px
+      right: 60px
+
+    &__glow
+      width: 760px
+      height: 720px
+      background: radial-gradient(48.21% 31.95% at 77.43% 53.2%, $accent 0%, $bg 100%)
++tablet 
+  .hero
+
+    min-height: auto
+
+    margin: 160px 0 0
+    
+    &__container
+      display: flex
+      flex-direction: column
+      // max-width: 710px
+    &__content
+      width: 100%
+
+      margin-top: 0
+    &__stats
+      justify-content: space-between
+      gap: 15px
+    &__stat
+      width: 100%
+    &__visual
+      position: relative
+
+      width: 100%
+      height: 520px
+
+      margin-top: 40px
+    &__car
+
+      left: 50%
+
+      right: auto
+
+      transform: translateX(-50%)
+
+      width: 900px
+    &__circle
+      display: none
+    &__glow
+      width: 1095px
+      height: 850px
+      background: radial-gradient(37.21% 38.95% at 66.43% 55.2%, $accent 0%, $bg 100%)
++mobile
+
+  .hero
+
+    margin: 110px 0 0px
+
+    &__badge
+      font-size: 15px
+
+    &__title
+      font-size: 42px
+
+      max-width: 100%
+
+    &__description
+      width: 100%
+
+      font-size: 18px
+
+    &__buttons
+      flex-direction: column
+
+      align-items: stretch
+
+    &__button
+      width: 100%
+      // height: 70px
+
+    &__stats
+      flex-wrap: wrap
+
+    &__stat
+      width: calc(50% - 10px)
+
+    &__visual
+      height: 420px
+
+    &__car
+      width: 720px
+    &__glow
+      background: radial-gradient(30.21% 24.95% at 69.43% 68.2%, $accent 0%, $bg 100%)
++mobile-sm
+  .hero
+
+    &__title
+      font-size: 34px
+
+    &__description
+      font-size: 16px
+
+    &__badge
+      font-size: 14px
+
+    &__stats
+      flex-direction: column
+
+    &__stat
+      width: 100%
+
+    &__visual
+      height: 305px
+
+    &__car
+      width: 540px
+    &__glow
+      background: radial-gradient(25.21% 24.95% at 85.43% 68.2%, $accent 0%, $bg 100%)
+
+
+@media (min-height: 1200px) and (max-width: 1100px) 
+  .hero
+
+    min-height: auto
+
+    margin: 160px 0 0
+
+    &__container
+      display: flex
+      flex-direction: column
+      max-width: 85%
+    &__content
+      // width: 100%
+
+      margin-top: 0
+    &__stats
+      justify-content: space-between
+      gap: 15px
+    &__stat
+      width: 100%
+    &__visual
+      position: relative
+
+      width: 100%
+      height: 520px
+
+      margin-top: 70px
+    &__car
+
+      left: 50%
+
+      right: auto
+
+      transform: translateX(-50%)
+
+      width: 900px
+    &__circle
+      display: none
+    &__glow
+      width: 1095px
+      height: 850px
+      background: radial-gradient(37.21% 38.95% at 66.43% 55.2%, $accent 0%, $bg 100%)

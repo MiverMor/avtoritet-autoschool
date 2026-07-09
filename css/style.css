@@ -727,6 +727,7 @@ span {
   z-index: 5;
   width: 888px;
   margin-top: 18vh;
+  margin-bottom: 5vh;
 }
 .hero__badge {
   display: inline-flex;
@@ -921,7 +922,6 @@ span {
   }
   .hero__stats {
     gap: 16px;
-    margin-bottom: 100px;
   }
   .hero__stat {
     padding: 18px 30px;

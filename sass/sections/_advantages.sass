@@ -19,8 +19,9 @@
 
     &__subtitle
         text-align: center
+        max-width: 750px
+        margin: 0 auto
         margin-bottom: 20px
-
     &__text
         display: block
         width: 702px
@@ -32,16 +33,14 @@
     // ===== КОНТЕЙНЕР С КАРТОЧКАМИ (FLEXBOX) =====
     &__cards
         display: flex
-        align-items: flex-start
-        justify-content: flex-start
+        justify-content: space-between
         flex-wrap: wrap
         gap: 54px
-
     // ===== КАРТОЧКА =====
     &__card
         display: flex
-        align-items: flex-start
-        justify-content: flex-start
+        // align-items: flex-start
+        justify-content: stretch
         flex-direction: column
         gap: 32px
         background: $card-bg
@@ -49,8 +48,9 @@
         border-radius: 25px
         padding: 33px 39px 33px 33px
         width: 490px
-        min-height: 293px
-        max-height: 293px
+        
+        // min-height: 293px
+        // max-height: 293px
 
         // ⭐ АНИМАЦИЯ ПОЯВЛЕНИЯ
         opacity: 0
@@ -157,13 +157,13 @@
             margin-bottom: 100px
 
         &__cards
-            gap: 54px
-            min-height: 318px
+            // gap: 54px
+            // min-height: 318px
 
         &__card
             width: 30%
-            height: 293px
-            padding: 33px 39px 33px 33px
+            // height: 293px
+            // padding: 33px 39px 33px 33px
             gap: 32px
 
         &__icon
@@ -191,22 +191,22 @@
         padding: 40px 0 80px 0
         &__subtitle
             font-size: 38px
+            max-width: 600px
 
         &__text
-            width: 100%
-            padding: 0 20px
+            // width: 100%
             margin-bottom: 60px
             font-size: 18px      // Средний текст
 
         &__cards
-            gap: 25px 20px       // Уменьшаем отступы для 3 колонок
-            justify-content: center
+            gap: 40px       // Уменьшаем отступы для 3 колонок
+            // justify-content: center
 
         &__card
-            width: calc(33.333% - 20px)  // 3 КОЛОНКИ
-            min-height: 250px
+            // width: calc(33.333% - 20px)  // 3 КОЛОНКИ
+            // min-height: 250px
             padding: 18px 24px 18px 18px
-            margin-right: 6px
+            // margin-right: 6px
             gap: 20px
 
         &__icon
@@ -236,21 +236,21 @@
             font-size: 36px
 
         &__text
-            width: 47%
-            padding: 0 20px
+            width: 70%
+            // padding: 0 20px
             margin-bottom: 50px
             font-size: 17px      // Средний текст
 
         &__cards
-            gap: 25px 20px
-            justify-content: center
+            gap: 30px
+            // justify-content: center
 
         &__card
             width: 47%  // 2 колонки
-            min-height: 250px
-            max-height: 250px
             padding: 22px 18px
             gap: 20px
+            &:last-child
+                flex-grow: 1
 
         &__icon
             width: 52px
@@ -278,18 +278,16 @@
         &__subtitle
             font-size: 35px
         &__text
-            width: 100%
-            padding: 0 16px
+            width: 80%
+            // padding: 0 16px
             margin-bottom: 40px
             font-size: 16px      // Меньше текст
 
         &__cards
-            gap: 20px 15px
+            gap: 20px
 
         &__card
             width: calc(50% - 12px)  // 2 колонки
-            min-height: 210px
-            max-height: 210px
             padding: 18px 16px
             gap: 16px
 
@@ -320,13 +318,15 @@
 +mobile-sm
     .advantages
         padding: 30px 0 50px 0
+        &__title
+            font-size: 16px
         &__subtitle
             font-size: 34px
         &__text
             width: 100%
             padding: 0 16px
             margin-bottom: 35px
-            font-size: 15px      // Маленький текст
+            font-size: 16px      // Маленький текст
 
         &__cards
             gap: 20px
@@ -334,8 +334,6 @@
 
         &__card
             width: 100%          // 1 колонка
-            min-height: auto
-            max-height: none
             padding: 20px 18px
             gap: 18px
 
@@ -370,7 +368,7 @@
         &__subtitle
             font-size: 30px
         &__text
-            font-size: 20px      // Очень маленький текст
+            // font-size: 18px      // Очень маленький текст
             margin-bottom: 30px
             padding: 0 12px
 
@@ -398,8 +396,8 @@
             gap: 6px
 
         &__item-title
-            font-size: 22px      // Маленький заголовок
+            font-size: 16px      // Маленький заголовок
 
         &__item-text
-            font-size: 20px      // Маленький текст
+            font-size: 14px      // Маленький текст
             line-height: 150%

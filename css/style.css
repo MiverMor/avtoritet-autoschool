@@ -374,70 +374,6 @@ button {
   overflow: hidden;
 }
 
-h1 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 74px;
-  color: #F1F2F6;
-  margin: 0;
-}
-
-p {
-  margin: 0;
-}
-
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 0 40px;
-  height: 60px;
-  border-radius: 15px;
-  font-weight: 700;
-  font-size: 18px;
-  text-align: center;
-  color: #F1F2F6;
-  transition: 0.35s ease;
-  white-space: nowrap;
-}
-.button:active {
-  transform: translateY(0);
-}
-
-h2 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 100%;
-  text-transform: uppercase;
-  color: #DF6018;
-  margin: 0;
-}
-
-h3 {
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 125%;
-  color: #F1F2F6;
-  margin: 0;
-}
-
-h4 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 100%;
-  color: #F1F2F6;
-  margin: 0;
-}
-
-span {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 160%;
-}
-
 .container {
   max-width: 1578px;
   width: 100%;
@@ -451,12 +387,12 @@ span {
 }
 @media (max-width: 1200px) {
   .container {
-    max-width: 1050px;
+    max-width: 1100px;
   }
 }
 @media (max-width: 992px) {
   .container {
-    max-width: 710px;
+    max-width: 770px;
   }
 }
 @media (max-width: 768px) {

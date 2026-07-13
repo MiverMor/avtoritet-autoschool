@@ -3,6 +3,7 @@ import { initStickyHeader } from './modules/sticky-header.js';
 import { initBurger } from './modules/burger.js';
 import './modules/hero.js';
 import './modules/steps.js';
+import './modules/gallery.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();

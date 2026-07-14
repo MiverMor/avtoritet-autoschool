@@ -374,70 +374,6 @@ button {
   overflow: hidden;
 }
 
-h1 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 74px;
-  color: #F1F2F6;
-  margin: 0;
-}
-
-p {
-  margin: 0;
-}
-
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 0 40px;
-  height: 60px;
-  border-radius: 15px;
-  font-weight: 700;
-  font-size: 18px;
-  text-align: center;
-  color: #F1F2F6;
-  transition: 0.35s ease;
-  white-space: nowrap;
-}
-.button:active {
-  transform: translateY(0);
-}
-
-h2 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 100%;
-  text-transform: uppercase;
-  color: #DF6018;
-  margin: 0;
-}
-
-h3 {
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 125%;
-  color: #F1F2F6;
-  margin: 0;
-}
-
-h4 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 100%;
-  color: #F1F2F6;
-  margin: 0;
-}
-
-span {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 160%;
-}
-
 .container {
   max-width: 1578px;
   width: 100%;
@@ -451,12 +387,12 @@ span {
 }
 @media (max-width: 1200px) {
   .container {
-    max-width: 1050px;
+    max-width: 1100px;
   }
 }
 @media (max-width: 992px) {
   .container {
-    max-width: 710px;
+    max-width: 770px;
   }
 }
 @media (max-width: 768px) {
@@ -727,7 +663,6 @@ span {
   z-index: 5;
   width: 888px;
   margin-top: 18vh;
-  margin-bottom: 5vh;
 }
 .hero__badge {
   display: inline-flex;
@@ -793,7 +728,7 @@ span {
 }
 .hero__stats {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 20px;
 }
 .hero__stat {
@@ -806,6 +741,7 @@ span {
   border: 1px solid #161B23;
   border-radius: 20px;
   padding: 20px 44px;
+  width: 207px;
   transition: 0.35s ease;
   will-change: transform;
 }
@@ -922,8 +858,10 @@ span {
   }
   .hero__stats {
     gap: 16px;
+    margin-bottom: 100px;
   }
   .hero__stat {
+    width: 180px;
     padding: 18px 30px;
   }
   .hero__car {
@@ -971,6 +909,7 @@ span {
     gap: 15px;
   }
   .hero__stat {
+    width: 160px;
     padding: 18px 18px;
   }
   .hero__visual {
@@ -1150,8 +1089,6 @@ span {
 }
 .advantages__subtitle {
   text-align: center;
-  max-width: 750px;
-  margin: 0 auto;
   margin-bottom: 20px;
 }
 .advantages__text {
@@ -1164,13 +1101,15 @@ span {
 }
 .advantages__cards {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 54px;
 }
 .advantages__card {
   display: flex;
-  justify-content: stretch;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 32px;
   background: rgba(19, 24, 30, 0.6);
@@ -1178,6 +1117,8 @@ span {
   border-radius: 25px;
   padding: 33px 39px 33px 33px;
   width: 490px;
+  min-height: 293px;
+  max-height: 293px;
   opacity: 0;
   transform: translateY(30px);
   animation: cardAppear 0.6s ease forwards;
@@ -1274,8 +1215,14 @@ span {
     font-size: 20px;
     margin-bottom: 100px;
   }
+  .advantages__cards {
+    gap: 54px;
+    min-height: 318px;
+  }
   .advantages__card {
     width: 30%;
+    height: 293px;
+    padding: 33px 39px 33px 33px;
     gap: 32px;
   }
   .advantages__icon {
@@ -1303,17 +1250,22 @@ span {
   }
   .advantages__subtitle {
     font-size: 38px;
-    max-width: 600px;
   }
   .advantages__text {
+    width: 100%;
+    padding: 0 20px;
     margin-bottom: 60px;
     font-size: 18px;
   }
   .advantages__cards {
-    gap: 40px;
+    gap: 25px 20px;
+    justify-content: center;
   }
   .advantages__card {
+    width: calc(33.333% - 20px);
+    min-height: 250px;
     padding: 18px 24px 18px 18px;
+    margin-right: 6px;
     gap: 20px;
   }
   .advantages__icon {
@@ -1343,20 +1295,21 @@ span {
     font-size: 36px;
   }
   .advantages__text {
-    width: 70%;
+    width: 47%;
+    padding: 0 20px;
     margin-bottom: 50px;
     font-size: 17px;
   }
   .advantages__cards {
-    gap: 30px;
+    gap: 25px 20px;
+    justify-content: center;
   }
   .advantages__card {
     width: 47%;
+    min-height: 250px;
+    max-height: 250px;
     padding: 22px 18px;
     gap: 20px;
-  }
-  .advantages__card:last-child {
-    flex-grow: 1;
   }
   .advantages__icon {
     width: 52px;
@@ -1385,15 +1338,18 @@ span {
     font-size: 35px;
   }
   .advantages__text {
-    width: 80%;
+    width: 100%;
+    padding: 0 16px;
     margin-bottom: 40px;
     font-size: 16px;
   }
   .advantages__cards {
-    gap: 20px;
+    gap: 20px 15px;
   }
   .advantages__card {
     width: calc(50% - 12px);
+    min-height: 210px;
+    max-height: 210px;
     padding: 18px 16px;
     gap: 16px;
   }
@@ -1424,9 +1380,6 @@ span {
   .advantages {
     padding: 30px 0 50px 0;
   }
-  .advantages__title {
-    font-size: 16px;
-  }
   .advantages__subtitle {
     font-size: 34px;
   }
@@ -1434,7 +1387,7 @@ span {
     width: 100%;
     padding: 0 16px;
     margin-bottom: 35px;
-    font-size: 16px;
+    font-size: 15px;
   }
   .advantages__cards {
     gap: 20px;
@@ -1442,6 +1395,8 @@ span {
   }
   .advantages__card {
     width: 100%;
+    min-height: auto;
+    max-height: none;
     padding: 20px 18px;
     gap: 18px;
   }
@@ -1477,6 +1432,7 @@ span {
     font-size: 30px;
   }
   .advantages__text {
+    font-size: 20px;
     margin-bottom: 30px;
     padding: 0 12px;
   }
@@ -1505,10 +1461,10 @@ span {
     gap: 6px;
   }
   .advantages__item-title {
-    font-size: 16px;
+    font-size: 22px;
   }
   .advantages__item-text {
-    font-size: 14px;
+    font-size: 20px;
     line-height: 150%;
   }
 }

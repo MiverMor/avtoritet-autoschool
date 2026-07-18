@@ -4,6 +4,9 @@ import { initBurger } from './modules/burger.js';
 import './modules/hero.js';
 import { initReviewsCarousel } from './modules/reviews-carousel.js';
 import { initReviewsExpand } from './modules/reviews-expand.js';
+import './modules/steps.js';
+import './modules/gallery.js';
+import './modules/promotions.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();

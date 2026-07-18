@@ -1,0 +1,403 @@
+// ============================================
+// ПОДКЛЮЧЕНИЕ ПЕРЕМЕННЫХ
+// ============================================
+
+@use '../base/variables' as *
+@use '../base/media' as *
+
+
+// ============================================
+// КЛЮЧЕВЫЕ КАДРЫ ДЛЯ АНИМАЦИЙ
+// ============================================
+
+@keyframes reviewCardAppear
+    0%
+        opacity: 0
+        transform: translateY(30px) scale(0.95)
+    100%
+        opacity: 1
+        transform: translateY(0) scale(1)
+
+@keyframes starsAppear
+    0%
+        opacity: 0
+        transform: scale(0) rotate(-30deg)
+    60%
+        transform: scale(1.2) rotate(5deg)
+    100%
+        opacity: 1
+        transform: scale(1) rotate(0deg)
+
+@keyframes textReveal
+    0%
+        opacity: 0
+        transform: translateY(15px)
+    100%
+        opacity: 1
+        transform: translateY(0)
+
+@keyframes lineGrow
+    0%
+        transform: scaleX(0)
+        opacity: 0
+    100%
+        transform: scaleX(1)
+        opacity: 1
+
+
+// ============================================
+// СЕКЦИЯ ОТЗЫВЫ
+// ============================================
+
+.reviews
+    padding: 100px 0
+    background: #0B0E13
+    position: relative
+    overflow: hidden
+    &__container
+        position: relative
+        z-index: 1
+
+    // ===== ЗАГОЛОВКИ =====
+    &__header
+        margin-bottom: 40px
+
+    &__title
+        text-align: left
+        color: $accent
+        font-family: 'Roboto', sans-serif
+        font-weight: 700
+        font-size: 20px
+        line-height: 100%
+        text-transform: uppercase
+        margin: 0 0 12px 0
+        opacity: 0
+        animation: textReveal 0.6s ease forwards
+        animation-delay: 0.2s
+        position: relative
+        display: inline-block
+
+        &::after
+            content: ''
+            position: absolute
+            bottom: -8px
+            left: 0
+            width: 0%
+            height: 3px
+            background: $accent
+            border-radius: 2px
+            animation: lineGrow 0.8s ease forwards
+            animation-delay: 0.6s
+            transform-origin: left
+
+    &__subtitle
+        text-align: left
+        font-weight: 500
+        font-size: 42px
+        line-height: 1.2
+        color: $text-primary
+        margin: 0 0 12px 0
+        opacity: 0
+        animation: textReveal 0.7s ease forwards
+        animation-delay: 0.4s
+
+    &__text
+        display: block
+        font-size: 18px
+        line-height: 1.7
+        color: $text-secondary
+        margin: 0 0 30px 0
+        opacity: 0
+        animation: textReveal 0.7s ease forwards
+        animation-delay: 0.6s
+
+    // ===== НАВИГАЦИЯ =====
+    &__nav
+        display: flex
+        justify-content: flex-end
+        gap: 8px
+        margin-bottom: 20px
+
+    &__button
+        width: 44px
+        height: 44px
+        border-radius: 50%
+        border: 1px solid $card-stroke
+        background: $card-bg
+        color: $text-secondary
+        display: flex
+        align-items: center
+        justify-content: center
+        cursor: pointer
+        transition: all 0.3s ease
+
+        &:hover:not(:disabled)
+            border-color: $accent
+            color: $accent
+            background: rgba($accent, 0.08)
+            transform: scale(1.05)
+
+        &:active:not(:disabled)
+            transform: scale(0.95)
+
+        &:disabled
+            opacity: 0.3
+            cursor: not-allowed
+
+        svg
+            width: 20px
+            height: 20px
+            flex-shrink: 0
+
+    // ===== КАРУСЕЛЬ =====
+    &__carousel-wrapper
+        position: relative
+        overflow: hidden
+
+    &__carousel
+        padding-top:10px
+        overflow: hidden
+        border-radius: 20px
+
+    &__track
+        display: flex
+        gap: 30px
+        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)
+        will-change: transform
+
+    // ===== КАРТОЧКА =====
+    &__card
+        flex: 0 0 calc(33.333% - 20px)
+        min-width: 0
+        background: $card-bg
+        border: 1px solid $card-stroke
+        border-radius: 20px
+        padding: 24px 24px
+        display: flex
+        flex-direction: column
+        gap: 20px
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease
+
+        &:hover
+            transform: translateY(-6px)
+            border-color: $accent
+
+    // ===== РАСКРЫТАЯ КАРТОЧКА =====
+    &__card--expanded
+        border-color: $accent
+        box-shadow: 0 8px 30px rgba($accent, 0.1)
+
+        .reviews__toggle-btn
+            color: lighten($accent, 20%)
+
+    // ===== ЗВЁЗДЫ =====
+    &__stars
+        display: flex
+        gap: 4px
+        flex-shrink: 0
+        opacity: 0
+        animation: starsAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards
+
+        .reviews__card:nth-child(1) &
+            animation-delay: 0.4s
+        .reviews__card:nth-child(2) &
+            animation-delay: 0.6s
+        .reviews__card:nth-child(3) &
+            animation-delay: 0.8s
+        .reviews__card:nth-child(4) &
+            animation-delay: 1.0s
+        .reviews__card:nth-child(5) &
+            animation-delay: 1.2s
+        .reviews__card:nth-child(6) &
+            animation-delay: 1.4s
+
+    &__star
+        width: 18px
+        height: 18px
+        display: block
+        flex-shrink: 0
+        object-fit: contain
+
+    // ===== ОБЕРТКА ДЛЯ ТЕКСТА =====
+    &__card-text-wrapper
+        flex: 1
+        display: flex
+        flex-direction: column
+        min-height: 0
+
+    // ===== ТЕКСТ ОТЗЫВА =====
+    &__card-text
+        font-weight: 400
+        font-size: 14px
+        line-height: 1.6
+        color: $text-secondary
+        margin: 0
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+        position: relative
+        overflow: hidden
+
+    // ===== КНОПКА "ЧИТАТЬ ЦЕЛИКОМ" =====
+    &__toggle-btn
+        background: none
+        border: none
+        color: $accent
+        font-size: 13px
+        font-weight: 500
+        cursor: pointer
+        padding: 8px 0 0 0
+        font-family: inherit
+        display: block
+        width: 100%
+        text-align: left
+        transition: color 0.2s ease
+
+        &:hover
+            color: lighten($accent, 20%)
+    &__vector
+        width: 100%
+        height: 1px
+        background: transparent
+        position: relative
+        overflow: hidden
+
+        &::before
+            content: ''
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            background: linear-gradient(90deg, transparent, $accent, transparent)
+            transform: scaleX(0)
+            transform-origin: center
+            animation: lineGrow 1.2s ease forwards
+            animation-delay: 1.4s
+
+        &::after
+            content: ''
+            position: absolute
+            top: -4px
+            left: 20%
+            width: 16px
+            height: 16px
+            background: radial-gradient(circle, rgba($accent, 0.25) 0%, transparent 70%)
+            border-radius: 50%
+            filter: blur(4px)
+            opacity: 0
+            animation: lightTrail 3s ease-in-out infinite
+            animation-delay: 2s
+
+    // ===== АВТОР =====
+    &__author
+        flex-shrink: 0
+        opacity: 0
+        animation: textReveal 0.6s ease forwards
+
+        .reviews__card:nth-child(1) &
+            animation-delay: 0.6s
+        .reviews__card:nth-child(2) &
+            animation-delay: 0.8s
+        .reviews__card:nth-child(3) &
+            animation-delay: 1.0s
+        .reviews__card:nth-child(4) &
+            animation-delay: 1.2s
+        .reviews__card:nth-child(5) &
+            animation-delay: 1.4s
+        .reviews__card:nth-child(6) &
+            animation-delay: 1.6s
+
+    &__author-name
+        font-weight: 600
+        font-size: 15px
+        color: $text-primary
+        font-family: 'Inter', sans-serif
+// ============================================
+// АДАПТИВНОСТЬ
+// ============================================
+
+// ===== НОУТБУКИ (до 1200px) =====
+@media (max-width: 1199px) and (min-width: 992px)
+    .reviews
+        padding: 80px 0
+
+        &__card
+            flex: 0 0 calc(50% - 15px)
+            padding: 22px 20px
+
+        &__subtitle
+            font-size: 36px
+
+        &__text
+            font-size: 16px
+            margin-bottom: 24px
+
+        &__card-text
+            font-size: 14px
+
+// ===== ПЛАНШЕТЫ (до 992px) =====
+@media (max-width: 991px) and (min-width: 768px)
+    .reviews
+        padding: 60px 0
+
+        // УБИРАЕМ display: none для кнопок навигации
+        // &__nav
+        //     display: none    <-- УДАЛИТЬ ЭТОТ БЛОК
+
+        &__card
+            flex: 0 0 calc(50% - 15px)
+            padding: 20px 18px
+
+        &__subtitle
+            font-size: 34px
+
+        &__text
+            font-size: 16px
+            margin-bottom: 24px
+
+        &__card-text
+            font-size: 14px
+
+// ===== ТЕЛЕФОНЫ (до 768px) =====
+@media (max-width: 767px)
+    .reviews
+        padding: 50px 0
+
+        &__header
+            margin-bottom: 30px
+
+        &__nav
+            display: flex
+            justify-content: flex-end
+            gap: 8px
+            margin-bottom: 16px
+
+        &__title
+            font-size: 18px
+
+        &__subtitle
+            font-size: 28px
+
+        &__text
+            font-size: 15px
+            margin-bottom: 20px
+
+        &__card
+            flex: 0 0 100%
+            padding: 18px 16px
+            gap: 10px
+
+            &:hover
+                transform: translateY(-4px)
+
+        &__card-text
+            font-size: 14px
+
+        &__stars
+            gap: 3px
+
+        &__star
+            width: 16px
+            height: 16px
+
+        &__author-name
+            font-size: 14px

@@ -1,0 +1,263 @@
+@use '../base/variables' as *
+@use '../base/media' as *
+
+.promotions
+  padding: 50px 0 100px 0 
+  &__title
+    text-align: center
+    margin-bottom: 20px
+  &__subtitle
+    text-align: center
+    max-width: 750px
+    margin: 0 auto
+    margin-bottom: 20px
+  &__text
+    display: block
+    max-width: 782px
+    margin: 0 auto
+    text-align: center
+    color: $text-secondary
+    margin-bottom: 65px
+  &__cards
+    display: flex
+    justify-content: center
+    gap: 50px
+  &__card
+    position: relative
+
+    display: flex
+    justify-content: stretch
+    flex-direction: column
+    gap: 30px
+
+    background: $card-bg
+
+    padding: 33px
+    border: 1px solid $card-stroke
+    border-radius: 25px
+
+    width: 510px
+
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, background 0.3s ease, border-color 1s ease
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      right: 0
+
+      width: 203px
+      height: 181px
+
+      background: url('../assets/icons/promotions-bg.svg') no-repeat top right
+      background-size: contain
+
+      pointer-events: none
+      z-index: 0
+
+      transition: transform .45s ease, opacity .45s ease
+    &:hover
+        transform: translateY(-12px) scale(1.02)
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba($accent, 0.15)
+        background: $card-bg-hover
+        border-color: $accent
+        border-width: 0.1px
+        &::before
+          filter: brightness(0) saturate(100%) invert(100%) 
+        .promotions__badge
+          background: rgba($accent,.35)
+          box-shadow: 0 0 20px rgba($accent,.25)
+  &__badge
+    display: inline-flex
+    align-items: center
+    gap: 5px
+
+    align-self: flex-start
+
+    padding: 6px 15px 6px 15px
+
+    border-radius: 20px
+
+    background: rgba($accent, .25)
+    backdrop-filter: blur(16px)
+
+    font-size: 16px
+    font-weight: 500
+
+    color: $accent
+
+    overflow: hidden
+
+    transition: .35s ease
+  &__item
+    display: flex
+    flex-direction: column
+    gap: 15px
+
+    width: 100%
+    &-text
+      font-weight: 500
+      font-size: 18px
+      line-height: 165%
+      color: $text-secondary
+  &__link
+    display: flex
+    align-items: center
+    gap: 5px
+    align-self: flex-start
+
+    cursor: pointer
+    a
+      position: relative
+      font-weight: 600
+      font-size: 20px
+      line-height: 100%
+      color: $accent
+
+      transition: .3s ease
+      &::after
+        content: ''
+        position: absolute
+        left: 0
+        bottom: -3px
+
+        width: 0
+        height: 2px
+
+        background: $accent
+
+        transition: width .3s ease
+    svg
+      width: 20px
+      height: 20px
+      color: $accent
+
+      transition: transform .3s ease
+    &:hover
+      a
+        color: lighten($accent, 8%)
+      a::after
+        width: 100%
+      svg
+        transform: translateX(6px)
+  &__badge,
+  &__item,
+  &__link
+    position: relative
+    z-index: 1
+
+// ============================================
+// АДАПТИВ
+// ============================================
++desktop
+  .promotions
+    &__card 
+      padding: 22px
++laptop
+  .promotions
+    padding: 40px 0 80px 0
+    &__subtitle
+      font-size: 38px
+    &__text
+      margin-bottom: 60px
+      font-size: 18px
+    &__cards
+      gap: 30px
+    &__card
+      width: 48%
+      padding: 24px
+      gap: 24px
+      &::before
+        width: 170px
+        height: 150px
+    &__badge
+      font-size: 14px
+      padding: 5px 14px
+    &__item
+      gap: 10px
+      &-title
+        font-size: 17px
+      &-text
+        font-size: 15px
+    &__link
+      a
+        font-size: 18px
++tablet
+  .promotions
+    padding: 40px 0 70px 0
+    &__subtitle
+      font-size: 36px
+    &__text
+      font-size: 17px
+      margin-bottom: 50px
+    &__cards
+      flex-direction: column
+      align-items: center
+      gap: 30px
+    &__card
+      width: 100%
+      max-width: 650px
++mobile
+  .promotions
+    padding: 30px 0 60px 0
+    &__title
+      font-size: 18px
+    &__subtitle
+      font-size: 35px
+    &__text
+      font-size: 16px
+      margin-bottom: 40px
+    &__card
+      padding: 16px
+      gap: 16px
+      &::before
+        width: 135px
+        height: 120px
+    &__badge
+      font-size: 15px
+      padding: 5px 12px
+      img
+        width: 18px
+    &__item
+      gap: 8px
+      &-title
+        font-size: 16px
+      &-text
+        font-size: 14px
+        line-height: 150%
+    &__link
+      a
+        font-size: 16px
+      svg
+        width: 18px
+        height: 18px
++mobile-sm
+  .promotions
+    padding: 20px 0 40px 0
+    &__title
+      font-size: 16px
+    &__subtitle
+      font-size: 30px
+    &__text
+      margin-bottom: 30px
+    &__cards
+      gap: 16px
+    &__card
+      padding: 14px
+      gap: 14px
+      border-radius: 18px
+      &::before
+        width: 110px
+        height: 100px
+    &__badge
+      font-size: 13px
+      padding: 4px 10px
+      img
+        width: 16px
+    &__item
+      gap: 6px
+    &__link
+      a
+        font-size: 16px
+      svg
+        width: 16px
+        height: 16px

@@ -5,9 +5,13 @@ import './modules/hero.js';
 import './modules/steps.js';
 import './modules/gallery.js';
 import './modules/promotions.js';
+import { initReviewsCarousel } from './modules/reviews-carousel.js';
+import { initReviewsExpand } from './modules/reviews-expand.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();
   initStickyHeader();
   initBurger();
+  initReviewsCarousel();
+  initReviewsExpand();
 });

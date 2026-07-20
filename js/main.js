@@ -7,6 +7,7 @@ import './modules/gallery.js';
 import './modules/promotions.js';
 import { initReviewsCarousel } from './modules/reviews-carousel.js';
 import { initReviewsExpand } from './modules/reviews-expand.js';
+import './modules/prices.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();

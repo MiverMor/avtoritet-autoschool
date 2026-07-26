@@ -1,0 +1,325 @@
+@use '../base/variables' as *
+@use '../base/media' as *
+
+.prices
+  padding: 50px 0 100px 0 
+  background: $bg-second
+  &__title
+    text-align: center
+    margin-bottom: 20px
+  &__subtitle
+    text-align: center
+    max-width: 750px
+    margin: 0 auto
+    margin-bottom: 20px
+  &__text
+    display: block
+    max-width: 782px
+    margin: 0 auto
+    text-align: center
+    color: $text-secondary
+    margin-bottom: 100px
+  &__cards
+    display: flex
+    justify-content: space-between
+
+    margin: 0 auto
+
+    max-width: 1070px
+
+    margin-bottom: 30px
+  &__card
+    position: relative
+
+    display: flex
+    justify-content: stretch
+    flex-direction: column
+
+    background: $card-bg
+
+    padding: 33px
+    border: 1px solid $card-stroke
+    border-radius: 25px
+
+    width: 510px
+
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, background 0.3s ease, border-color 1s ease
+    &:hover
+      transform: translateY(-12px) scale(1.02)
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba($accent, 0.15)
+      background: $card-bg-hover
+      border-color: $accent
+      border-width: 0.1px
+      .prices__price
+        transform: scale(1.05)
+
+      .prices__badge
+        background: rgba($accent,.35)
+        box-shadow: 0 0 18px rgba($accent,.15)
+
+  &__category
+    font-weight: 500
+    font-size: 16px
+    color: $text-secondary
+    margin-bottom: 30px
+  &__card-title
+    font-weight: 700
+    font-size: 25px
+    line-height: 100%
+    margin-bottom: 30px
+  &__price
+    font-family: "Roboto", sans-serif
+    font-weight: 700
+    font-size: 40px
+    line-height: 100%
+    color: $accent
+    margin-bottom: 5px
+
+    transition: .35s ease
+  &__description
+    font-weight: 500
+    font-size: 18px
+    line-height: 165%
+    color: $text-secondary
+    margin-bottom: 15px
+  &__list
+    list-style-type: none
+    margin: 0
+    padding-left: 8px
+  &__item
+    display: flex
+    align-items: center
+    gap: 10px
+    span
+      font-weight: 500
+      font-size: 18px
+      line-height: 100%
+      color: $text-secondary
+    &:not(:last-child)
+      margin-bottom: 15px
+  &__badge
+    position: absolute
+    top: 0
+    transform: translateY(-50%)
+
+    display: inline-flex
+    align-items: center
+    
+    padding: 6px 15px
+    
+    font-weight: 500
+    font-size: 16px
+    border-radius: 20px
+
+    background: rgba($accent, .25)
+    backdrop-filter: blur(16px)
+
+    color: $accent
+
+    overflow: hidden
+
+    transition: .35s ease
+  &__bottom
+    margin: 0 auto
+    max-width: 1070px
+
+    display: flex
+    justify-content: stretch
+    flex-direction: column
+    align-items: center
+
+    gap:  30px
+
+    background: $card-bg
+
+    padding: 33px
+    border: 1px solid $card-stroke
+    border-radius: 25px
+    
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, background 0.3s ease, border-color 1s ease
+    &:hover
+      transform: translateY(-12px) scale(1.02)
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba($accent, 0.15)
+      background: $card-bg-hover
+      border-color: $accent
+      border-width: 0.1px
+  &__advantages
+    margin: 0
+    padding: 0
+
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-around
+
+    max-width: 590px
+  &__bottom-text
+    font-weight: 500
+    font-size: 18px
+    line-height: 165%
+    color: $text-secondary
+  &__actions
+    display: flex
+    align-items: center
+    gap: 15px
+  &__button
+    &--primary
+      background: $accent
+
+      box-shadow: 0 0 30px 0 rgba($accent,.25)
+
+      will-change: transform
+      transition: .35s ease
+      &:hover
+        transform: translateY(-3px)
+
+        box-shadow: 0 0 50px rgba($accent,.45)
+    &--secondary
+      font-weight: 500
+
+      background: $card-bg
+
+      border: 1px solid $card-stroke
+
+      backdrop-filter: blur(14px)
+
+      will-change: transform
+      transition: .35s ease
+      &:hover
+        background: rgba(25,30,36,.9)
+        border-color: $accent
+        transform: translateY(-3px)
+
+
+
+// ============================================
+// АДАПТИВ
+// ============================================
++desktop
+  .prices
+    &__card 
+      padding: 22px
+    &__bottom
+      padding: 22px
++laptop
+  .prices
+    padding: 40px 0 80px 0
+    &__subtitle
+      font-size: 38px
+    &__text
+      margin-bottom: 60px
+      font-size: 18px
+    &__cards
+      gap: 30px
+      justify-content: center
+    &__card
+      width: 100%
+      max-width: 470px
+    &__badge
+      font-size: 14px
+      padding: 5px 14px
+    &__category
+      font-size: 14px
+      margin-bottom: 24px
+    &__card-title
+      font-size: 17px
+      margin-bottom: 24px
+    &__description
+      font-size: 15px
+    &__item
+      gap: 8px
+      span
+        font-size: 15px
+      &:not(:last-child)
+        margin-bottom: 10px
+    &__bottom
+      max-width: 965px
+      gap: 24px
+    &__advantages
+      max-width: 540px
+    &__bottom-text
+      font-size: 15px
++tablet 
+  .prices
+    padding: 40px 0 70px 0
+    &__subtitle
+      font-size: 36px
+    &__text
+      font-size: 17px
+      margin-bottom: 50px
+    &__button
+      font-size: 16px
++mobile 
+  .prices
+    padding: 30px 0 60px 0
+    &__title
+      font-size: 18px
+    &__subtitle
+      font-size: 35px
+    &__text
+      font-size: 16px
+      margin-bottom: 40px
+    &__cards
+      flex-direction: column
+      align-items: center
+      gap: 30px
+    &__card
+      max-width: 700px
+      width: 100%
+      padding: 16px
+    &__badge
+      right: 35%
+    &__category
+      margin-bottom: 16px
+    &__card-title
+      margin-bottom: 16px
+    &__description
+      margin-bottom: 15px
+    &__list
+      padding: 0
+    &__item
+      margin-bottom: 8px
+    &__bottom
+      max-width: 700px
+      align-items: flex-start
+      padding: 16px
+      gap: 16px
+    &__advantages
+      flex-direction: column
+      align-items: flex-start
+      gap: 18px
+      max-width: none
+    &__actions
+      width: 100%
+      flex-direction: column
+      gap: 10px
+    &__button
+      width: 100%
+      justify-content: center
++mobile-sm
+  .prices
+    padding: 20px 0 40px 0
+    &__title
+      font-size: 16px
+    &__subtitle
+      font-size: 30px
+      max-width: 300px
+    &__text
+      margin-bottom: 30px
+    &__cards
+      gap: 16px
+    &__card
+      padding: 14px
+      border-radius: 18px
+    &__badge
+      right: 5%
+      transform: translateY(-35%)
+      font-size: 13px
+      padding: 4px 10px
+    &__advantages
+      gap: 0
+    &__item
+      margin-bottom: 6px
+      svg
+        flex-shrink: 0
+      span
+        line-height: 140%

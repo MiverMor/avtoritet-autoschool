@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (empty($_SESSION['csrf'])) {
+    $_SESSION['csrf'] = bin2hex(random_bytes(32));
+}
+?>
 <!doctype html>
 <html lang="ru">
   <head>
@@ -1894,28 +1901,62 @@
               Оставьте заявку — перезвоним и ответим на все вопросы
             </p>
 
-            <form class="contacts__form">
-              <div class="contacts__field">
-                <label>Имя *</label>
-                <input type="text" placeholder="Как к вам обращаться" />
+            <form
+              class="contacts__form"
+              id="contactForm"
+              action="php/contact.php"
+              method="POST"
+            >
+              <input
+                type="hidden"
+                name="csrf"
+                autocomplete="off"
+                value="<?= $_SESSION['csrf'] ?? '' ?>"
+              />
+              <div class="contacts__field contacts__field--hidden">
+                <input type="text" name="website" autocomplete="off" />
               </div>
-
               <div class="contacts__field">
-                <label>Телефон *</label>
-                <input type="tel" placeholder="+7 (___) ___-__-__" />
+                <label for="name">Имя *</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="Как к вам обращаться"
+                  required
+                />
               </div>
-
               <div class="contacts__field">
-                <label>Email *</label>
-                <input type="email" placeholder="Введите свой Email" />
+                <label for="phone">Телефон *</label>
+                <input
+                  id="phone"
+                  type="tel"
+                  name="phone"
+                  placeholder="+7 (___) ___-__-__"
+                  required
+                />
               </div>
-
               <div class="contacts__field">
-                <label>Комментарий</label>
-                <textarea placeholder="Введите свой комментарий"></textarea>
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Введите свой Email"
+                />
               </div>
-
-              <button class="button contacts__submit">Отправить заявку</button>
+              <div class="contacts__field">
+                <label for="message">Комментарий</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Введите свой комментарий"
+                ></textarea>
+              </div>
+              <button class="button contacts__submit" type="submit">
+                Отправить заявку
+              </button>
+              <div class="contacts__success">Спасибо! Заявка отправлена.</div>
             </form>
           </div>
         </div>

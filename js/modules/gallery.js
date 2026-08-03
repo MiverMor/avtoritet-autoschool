@@ -1,13 +1,35 @@
 gsap.registerPlugin(ScrollTrigger);
 
 // ========================================
-// Настройки анимации
+// Настройки
 // ========================================
 
 const isDesktop = () => window.innerWidth >= 992;
+let currentAnimation;
+let resizeTimer;
+
+// ========================================
+// Анимация при скролле
+// ========================================
 
 function initGalleryScrollAnimation() {
-  if (!isDesktop()) return;
+  // Удаляем только триггеры галереи
+  ScrollTrigger.getAll().forEach((trigger) => {
+    if (
+      trigger.trigger?.classList?.contains('gallery__images') ||
+      trigger.trigger?.classList?.contains('gallery__image')
+    ) {
+      trigger.kill();
+    }
+  });
+
+  // Сбрасываем стили
+  gsap.set('.gallery__image', { clearProps: 'all' });
+
+  if (!isDesktop()) {
+    ScrollTrigger.refresh();
+    return;
+  }
 
   gsap.from('.gallery__image', {
     y: 60,
@@ -15,15 +37,19 @@ function initGalleryScrollAnimation() {
     duration: 0.8,
     stagger: 0.15,
     ease: 'power3.out',
-    clearProps: 'transform,opacity',
 
     scrollTrigger: {
       trigger: '.gallery__images',
       start: 'top 75%',
       end: 'bottom 20%',
       toggleActions: 'play reverse play reverse',
+      invalidateOnRefresh: true,
     },
+
+    clearProps: 'transform,opacity',
   });
+
+  ScrollTrigger.refresh();
 }
 
 initGalleryScrollAnimation();
@@ -53,13 +79,11 @@ const galleryData = {
 };
 
 // ========================================
-// Галерея
+// Рендер
 // ========================================
 
 const tabs = document.querySelectorAll('.gallery__tab');
 const galleryImages = document.querySelector('.gallery__images');
-
-let currentAnimation;
 
 function renderGallery(type) {
   galleryImages.innerHTML = galleryData[type]
@@ -72,6 +96,10 @@ function renderGallery(type) {
     )
     .join('');
 }
+
+// ========================================
+// Переключение вкладок
+// ========================================
 
 tabs.forEach((tab) => {
   tab.addEventListener('click', () => {
@@ -88,10 +116,7 @@ tabs.forEach((tab) => {
 
     const oldCards = gsap.utils.toArray('.gallery__image');
 
-    // ===========================
-    // МОБИЛКА И ПЛАНШЕТ
-    // ===========================
-
+    // МОБИЛКА / ПЛАНШЕТ
     if (!isDesktop()) {
       currentAnimation = gsap.to(oldCards, {
         opacity: 0,
@@ -106,14 +131,13 @@ tabs.forEach((tab) => {
 
           currentAnimation = gsap.fromTo(
             newCards,
-            {
-              opacity: 0,
-            },
+            { opacity: 0 },
             {
               opacity: 1,
               duration: 0.28,
               stagger: 0.05,
               ease: 'power1.out',
+              clearProps: 'opacity',
             },
           );
         },
@@ -122,10 +146,7 @@ tabs.forEach((tab) => {
       return;
     }
 
-    // ===========================
-    // ПК
-    // ===========================
-
+    // ДЕСКТОП
     currentAnimation = gsap.to(oldCards, {
       y: -20,
       opacity: 0,
@@ -136,25 +157,26 @@ tabs.forEach((tab) => {
       onComplete: () => {
         renderGallery(type);
 
-        const newCards = gsap.utils.toArray('.gallery__image');
-
-        currentAnimation = gsap.from(newCards, {
-          y: 60,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: 'power3.out',
-          clearProps: 'transform,opacity',
-        });
-
-        ScrollTrigger.refresh();
+        // Переинициализируем scroll-анимацию
+        initGalleryScrollAnimation();
       },
     });
   });
 });
 
-// При изменении размера окна
+// ========================================
+// Resize
+// ========================================
+
 window.addEventListener('resize', () => {
-  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  initGalleryScrollAnimation();
+  clearTimeout(resizeTimer);
+
+  resizeTimer = setTimeout(() => {
+    initGalleryScrollAnimation();
+  }, 200);
+});
+
+// После полной загрузки
+window.addEventListener('load', () => {
+  ScrollTrigger.refresh();
 });

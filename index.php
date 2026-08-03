@@ -1372,7 +1372,7 @@ if (empty($_SESSION['csrf'])) {
       <!-- /.reviews__container -->
     </section>
     <!-- ... весь контент ... -->
-    <section id="documentation" class="documentation">
+    <section id="documents" class="documentation">
       <div class="documentation__container container">
         <h2 class="documentation__title">Документация</h2>
         <h3 class="documentation__subtitle">Правовые документы автошколы</h3>

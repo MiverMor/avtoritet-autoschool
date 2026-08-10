@@ -648,6 +648,7 @@ span {
     height: 100vh;
     background: #0B0E13;
     flex-direction: column;
+    justify-content: space-between;
     padding: 120px 30px 40px;
     transform: translateX(100%);
     transition: transform 0.35s ease;
@@ -711,6 +712,9 @@ span {
   }
 }
 @media (max-width: 576px) {
+  .header__nav {
+    margin-bottom: 10px;
+  }
   .header__logo img {
     width: 150px;
   }

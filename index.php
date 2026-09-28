@@ -1,10 +1,10 @@
-<!-- <?php
+<?php
 session_start();
 
 if (empty($_SESSION['csrf'])) {
     $_SESSION['csrf'] = bin2hex(random_bytes(32));
 }
-?> -->
+?>
 <!doctype html>
 <html lang="ru">
   <head>
@@ -86,20 +86,20 @@ if (empty($_SESSION['csrf'])) {
             </li>
           </ul>
           <div class="header__mobile-actions">
-            <a href="#" class="header__button header__button--whatsapp">
+            <a href="tel:+79643580202" class="header__button header__button--whatsapp">
               Макс
             </a>
 
-            <a href="#" class="header__button header__button--primary">
+            <a href="#contacts" class="header__button header__button--primary">
               Записаться
             </a>
           </div>
         </nav>
 
         <div class="header__actions">
-          <a href="#" class="header__button header__button--whatsapp"> Макс </a>
+          <a href="tel:+79643580202" class="header__button header__button--whatsapp"> Макс </a>
 
-          <a href="#" class="header__button header__button--primary">
+          <a href="#contacts" class="header__button header__button--primary">
             Записаться
           </a>
         </div>
@@ -137,7 +137,7 @@ if (empty($_SESSION['csrf'])) {
           </p>
 
           <div class="hero__buttons">
-            <a href="#" class="button hero__button hero__button--primary">
+            <a href="#contacts" class="button hero__button hero__button--primary">
               Записаться на обучение
               <img
                 src="assets/icons/arrow_right_alt.svg"
@@ -145,7 +145,7 @@ if (empty($_SESSION['csrf'])) {
               />
             </a>
 
-            <a href="#" class="button hero__button hero__button--secondary">
+            <a href="tel:+79643580202" class="button hero__button hero__button--secondary">
               <img src="assets/icons/mark_chat_read.svg" alt="Icon: Max" />
               Написать в Макс
             </a>

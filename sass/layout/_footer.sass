@@ -10,16 +10,14 @@ $footer-bg: #141A22
 
 .footer
     background: $footer-bg
-    padding-top: 60px
+    padding: 50px 0 70px 0
     position: relative
     overflow: hidden
 
     &__container
         position: relative
         z-index: 1
-        max-width: 1200px
         margin: 0 auto
-        padding: 0 20px
 
     // ===== ВЕРХНЯЯ ЧАСТЬ =====
     &__top
@@ -31,7 +29,7 @@ $footer-bg: #141A22
     &__logo
         display: flex
         flex-direction: column
-        flex: 0 0 237px
+        flex: 0 0 300px
         gap: 15px
 
         &_icon
@@ -60,6 +58,7 @@ $footer-bg: #141A22
         flex-direction: row
         min-width: 670px
         gap: 85px
+        margin-right: 15%
 
     // ===== КОНТАКТЫ =====
     &__contacts
@@ -241,7 +240,7 @@ $footer-bg: #141A22
 // ===== НОУТБУКИ (1200-1599px) =====
 +laptop
     .footer
-        padding-top: 50px
+        padding: 40px 0 40px 0
 
         &__top
             gap: 30px
@@ -258,6 +257,7 @@ $footer-bg: #141A22
         &__content
             min-width: auto
             gap: 50px
+            margin-right: 10%
 
         &__contacts
             &_title
@@ -292,7 +292,7 @@ $footer-bg: #141A22
 // ===== ПЛАНШЕТЫ (992-1199px) =====
 +tablet
     .footer
-        padding-top: 40px
+        padding: 40px 0 40px 0 
 
         &__top
             flex-direction: column
@@ -317,6 +317,7 @@ $footer-bg: #141A22
             width: 100%
             gap: 40px
             justify-content: space-around
+            margin-right: 10%
 
         &__contacts
             &_title
@@ -390,7 +391,7 @@ $footer-bg: #141A22
             width: 100%
             gap: 30px
             align-items: center
-
+            margin-right: 0px
         &__contacts
             width: 100%
             max-width: 400px
@@ -456,7 +457,7 @@ $footer-bg: #141A22
 // ===== МАЛЕНЬКИЕ ТЕЛЕФОНЫ (< 576px) =====
 +mobile-sm
     .footer
-        padding-top: 20px
+        padding: 20px 0 20px 0
 
         &__container
             padding: 0 16px

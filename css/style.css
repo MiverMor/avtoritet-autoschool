@@ -438,6 +438,11 @@ span {
   line-height: 160%;
 }
 
+.price-rice {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
 .container {
   max-width: 1578px;
   width: 100%;

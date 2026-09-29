@@ -127,6 +127,11 @@ if (empty($_SESSION['csrf'])) {
             <p>•</p>
             <p>Автошкола</p>
           </div>
+          <div class="hero__badge">
+            <p style="color: #DF6018;">Внимание!!!</p>
+            <p>•</p>
+            <p>Ожидается повышение цен</p>
+          </div>
 
           <h1 class="hero__title">
             Ваш путь к безопасному вождению начинается здесь
@@ -624,8 +629,13 @@ if (empty($_SESSION['csrf'])) {
         <h3 class="prices__subtitle">Обучение на категорию В</h3>
         <span class="prices__text"
           >Понятные цены без скрытых доплат. Скидки студентам и
-          школьникам.</span
-        >
+          школьникам.
+          <div class="hero__badge price-rice">
+            <p style="color: #DF6018;">Внимание!!!</p>
+            <p>•</p>
+            <p>Ожидается повышение цен</p>
+          </div>
+        </span>
 
         <div class="prices__cards">
           <div class="prices__card">
@@ -1891,7 +1901,7 @@ if (empty($_SESSION['csrf'])) {
               </div>
             </div>
 
-            <a href="#" class="button contacts__messenger"> Написать в Макс </a>
+            <a href="tel:+79643580202" class="button contacts__messenger"> Написать в Макс </a>
           </div>
 
           <div class="contacts__form-wrapper">

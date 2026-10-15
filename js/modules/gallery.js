@@ -69,6 +69,9 @@ const galleryData = {
     'assets/images/gallery/car1.jpg',
     'assets/images/gallery/car2.jpg',
     'assets/images/gallery/car3.jpg',
+    'assets/images/gallery/car4.jpg',
+    'assets/images/gallery/car5.jpg',
+    'assets/images/gallery/car6.jpg',
   ],
 
   autodrome: [
@@ -85,16 +88,156 @@ const galleryData = {
 const tabs = document.querySelectorAll('.gallery__tab');
 const galleryImages = document.querySelector('.gallery__images');
 
+let carouselIndex = 0;
+let carouselResizeTimer;
+
 function renderGallery(type) {
-  galleryImages.innerHTML = galleryData[type]
-    .map(
-      (src) => `
-        <div class="gallery__image">
-          <img src="${src}" alt="">
+  const images = galleryData[type];
+
+  carouselIndex = 0;
+
+  // Если фото больше трёх — показываем карусель.
+  // Для офиса и автодрома с тремя фото оставляем сетку.
+  const useCarousel = type === 'cars' && images.length > 3;
+
+  if (!useCarousel) {
+    galleryImages.innerHTML = images
+      .map(
+        (src) => `
+          <div class="gallery__image">
+            <img src="${src}" alt="">
+          </div>
+        `,
+      )
+      .join('');
+
+    return;
+  }
+
+  galleryImages.innerHTML = `
+    <div class="gallery__carousel">
+      <div class="gallery__carousel-viewport">
+        <div class="gallery__carousel-track">
+          ${images
+            .map(
+              (src, index) => `
+                <div class="gallery__image">
+                  <img src="${src}" alt="Автомобиль автошколы, фото ${index + 1}" loading="lazy">
+                </div>
+              `,
+            )
+            .join('')}
         </div>
-      `,
-    )
-    .join('');
+      </div>
+
+      <div class="gallery__carousel-controls">
+        <button
+          class="gallery__arrow gallery__arrow--prev"
+          type="button"
+          aria-label="Предыдущие автомобили"
+          disabled
+        >
+          &#8592;
+        </button>
+
+        <span class="gallery__counter">
+          <span class="gallery__counter-current">1</span>
+          /
+          <span class="gallery__counter-total">${images.length}</span>
+        </span>
+
+        <button
+          class="gallery__arrow gallery__arrow--next"
+          type="button"
+          aria-label="Следующие автомобили"
+        >
+          &#8594;
+        </button>
+      </div>
+    </div>
+  `;
+
+  initGalleryCarousel();
+}
+
+let updateActiveCarousel = null;
+
+function initGalleryCarousel() {
+  const carousel = galleryImages.querySelector('.gallery__carousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.gallery__carousel-track');
+  const cards = [...track.querySelectorAll('.gallery__image')];
+  const prev = carousel.querySelector('.gallery__arrow--prev');
+  const next = carousel.querySelector('.gallery__arrow--next');
+  const counter = carousel.querySelector('.gallery__counter-current');
+
+  function getVisibleCount() {
+    if (window.innerWidth < 768) return 1;
+    if (window.innerWidth < 992) return 2;
+    return 3;
+  }
+
+  function updateCarousel() {
+    const visibleCount = getVisibleCount();
+    const maxIndex = Math.max(0, cards.length - visibleCount);
+
+    carouselIndex = Math.min(carouselIndex, maxIndex);
+
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+
+    track.style.transform = `translateX(-${carouselIndex * (cardWidth + gap)}px)`;
+
+    prev.disabled = carouselIndex === 0;
+    next.disabled = carouselIndex >= maxIndex;
+
+    counter.textContent = carouselIndex + 1;
+  }
+  updateActiveCarousel = updateCarousel;
+
+  prev.addEventListener('click', () => {
+    carouselIndex = Math.max(0, carouselIndex - 1);
+    updateCarousel();
+  });
+
+  next.addEventListener('click', () => {
+    const maxIndex = cards.length - getVisibleCount();
+    carouselIndex = Math.min(maxIndex, carouselIndex + 1);
+    updateCarousel();
+  });
+
+  updateCarousel();
+
+  // Сохраняем актуальное положение при изменении ширины окна.
+  function handleGalleryCarouselResize() {
+    const carousel = galleryImages.querySelector('.gallery__carousel');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.gallery__carousel-track');
+    const cards = [...track.querySelectorAll('.gallery__image')];
+    const visibleCount =
+      window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3;
+
+    carouselIndex = Math.min(
+      carouselIndex,
+      Math.max(0, cards.length - visibleCount),
+    );
+
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+
+    track.style.transform = `translateX(-${carouselIndex * (cardWidth + gap)}px)`;
+
+    carousel.querySelector('.gallery__arrow--prev').disabled =
+      carouselIndex === 0;
+
+    carousel.querySelector('.gallery__arrow--next').disabled =
+      carouselIndex >= cards.length - visibleCount;
+
+    carousel.querySelector('.gallery__counter-current').textContent =
+      carouselIndex + 1;
+  }
 }
 
 // ========================================
@@ -167,12 +310,17 @@ tabs.forEach((tab) => {
 // ========================================
 // Resize
 // ========================================
-
+function handleGalleryCarouselResize() {
+  if (updateActiveCarousel) {
+    updateActiveCarousel();
+  }
+}
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
 
   resizeTimer = setTimeout(() => {
     initGalleryScrollAnimation();
+    handleGalleryCarouselResize();
   }, 200);
 });
 

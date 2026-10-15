@@ -61,6 +61,112 @@
     &:hover
       box-shadow: 0 0px 45px 0 rgba($accent,.18)
 
+  &__images:has(.gallery__carousel)
+    grid-template-columns: 1fr
+
+  &__carousel
+    width: 100%
+    min-width: 0
+
+  &__carousel-viewport
+    width: 100%
+    overflow: hidden
+    border-radius: 25px
+
+  &__carousel-track
+    display: flex
+    gap: 24px
+    transition: transform .4s ease
+    will-change: transform
+
+  &__carousel-track &__image
+    flex: 0 0 calc((100% - 48px) / 3)
+    min-width: 0
+
+  &__carousel-controls
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: 22px
+    margin-top: 28px
+
+  &__arrow
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 46px
+    height: 46px
+    border: 1px solid $card-stroke
+    border-radius: 50%
+    background: $card-bg
+    color: white
+    font-size: 24px
+    cursor: pointer
+    transition: .25s ease
+
+    &:hover:not(:disabled)
+      background: $accent
+      border-color: $accent
+
+    &:disabled
+      opacity: .35
+      cursor: not-allowed
+
+  &__counter
+    color: $text-secondary
+    font-size: 16px
+    font-variant-numeric: tabular-nums
+
+  &__counter-current
+    color: $accent
+    font-weight: 700
+
+
+  &__carousel-viewport
+    display: block
+    width: 100%
+    overflow: hidden
+
+  &__carousel-track
+    display: flex
+    width: 100%
+    gap: 24px
+    transition: transform .4s ease
+
+  // &__carousel-track &__image
+  //   display: block
+  //   flex: 0 0 calc((100% - 48px) / 3)
+  //   width: calc((100% - 48px) / 3)
+  //   min-width: 0
+  //   aspect-ratio: 1 / 0.85
+  //   border-radius: 25px
+  //   overflow: hidden
+
+  //   img
+  //     display: block
+  //     width: 100%
+  //     height: 100%
+  //     object-fit: cover
+
++tablet
+  .gallery
+    &__carousel-track
+      gap: 20px
+
+    &__carousel-track &__image
+      flex-basis: calc((100% - 20px) / 2)
+
++mobile
+  .gallery
+    &__carousel-viewport
+      border-radius: 18px
+
+    &__carousel-track &__image
+      flex-basis: 100%
+
+    &__carousel-controls
+      margin-top: 20px
+
 
 // ============================================
 // АДАПТИВ
@@ -140,3 +246,5 @@
       gap: 14px
     &__image
       border-radius: 16px
+
+

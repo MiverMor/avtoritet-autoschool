@@ -134,6 +134,7 @@ function renderGallery(type) {
           class="gallery__arrow gallery__arrow--prev"
           type="button"
           aria-label="Предыдущие автомобили"
+          disabled
         >
           &#8592;
         </button>
@@ -165,106 +166,77 @@ function initGalleryCarousel() {
   if (!carousel) return;
 
   const track = carousel.querySelector('.gallery__carousel-track');
+  const cards = [...track.querySelectorAll('.gallery__image')];
   const prev = carousel.querySelector('.gallery__arrow--prev');
   const next = carousel.querySelector('.gallery__arrow--next');
   const counter = carousel.querySelector('.gallery__counter-current');
 
-  // Оригинальные карточки — без копий.
-  const originalCards = [...track.querySelectorAll('.gallery__image')];
-  const originalCount = originalCards.length;
-
-  if (originalCount <= 1) return;
-
-  // Копируем по три карточки в начало и конец.
-  // Трёх достаточно для всех наших размеров: 1, 2 или 3 карточки на экране.
-  const cloneCount = 3;
-
-  const prependClones = originalCards.slice(-cloneCount).map((card) => {
-    const clone = card.cloneNode(true);
-    clone.dataset.carouselClone = 'true';
-    clone.setAttribute('aria-hidden', 'true');
-    return clone;
-  });
-
-  const appendClones = originalCards.slice(0, cloneCount).map((card) => {
-    const clone = card.cloneNode(true);
-    clone.dataset.carouselClone = 'true';
-    clone.setAttribute('aria-hidden', 'true');
-    return clone;
-  });
-
-  prependClones.forEach((clone) => track.prepend(clone));
-  appendClones.forEach((clone) => track.append(clone));
-
-  let carouselIndex = cloneCount;
-
-  function updateCounter() {
-    // Счётчик показывает только оригинальные фотографии: 1 / 6, 2 / 6...
-    const realIndex =
-      (((carouselIndex - cloneCount) % originalCount) + originalCount) %
-      originalCount;
-
-    counter.textContent = realIndex + 1;
+  function getVisibleCount() {
+    if (window.innerWidth < 768) return 1;
+    if (window.innerWidth < 992) return 2;
+    return 3;
   }
 
-  function updateCarousel(animate = true) {
-    const cards = [...track.querySelectorAll('.gallery__image')];
-    if (!cards.length) return;
+  function updateCarousel() {
+    const visibleCount = getVisibleCount();
+    const maxIndex = Math.max(0, cards.length - visibleCount);
+
+    carouselIndex = Math.min(carouselIndex, maxIndex);
 
     const cardWidth = cards[0].getBoundingClientRect().width;
     const gap = parseFloat(getComputedStyle(track).gap) || 0;
-    const offset = carouselIndex * (cardWidth + gap);
 
-    if (!animate) {
-      track.style.transition = 'none';
-    }
+    track.style.transform = `translateX(-${carouselIndex * (cardWidth + gap)}px)`;
 
-    track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+    prev.disabled = carouselIndex === 0;
+    next.disabled = carouselIndex >= maxIndex;
 
-    if (!animate) {
-      // Применяем позицию без анимации перед возвратом переходов.
-      track.offsetWidth;
-      track.style.transition = '';
-    }
-
-    updateCounter();
-
-    // В бесконечной карусели обе стрелки всегда доступны.
-    prev.disabled = false;
-    next.disabled = false;
+    counter.textContent = carouselIndex + 1;
   }
+  updateActiveCarousel = updateCarousel;
 
-  function moveCarousel(direction) {
-    carouselIndex += direction;
+  prev.addEventListener('click', () => {
+    carouselIndex = Math.max(0, carouselIndex - 1);
     updateCarousel();
-  }
-
-  prev.addEventListener('click', () => moveCarousel(-1));
-  next.addEventListener('click', () => moveCarousel(1));
-
-  // Когда доходим до копии, незаметно возвращаемся к оригиналу.
-  track.addEventListener('transitionend', (event) => {
-    if (event.target !== track || event.propertyName !== 'transform') return;
-
-    // Перешли на копию первой карточки в конце.
-    if (carouselIndex >= cloneCount + originalCount) {
-      carouselIndex = cloneCount;
-      updateCarousel(false);
-    }
-
-    // Перешли на копию последней карточки в начале.
-    if (carouselIndex < cloneCount) {
-      carouselIndex = cloneCount + originalCount - 1;
-      updateCarousel(false);
-    }
   });
 
-  updateCarousel(false);
+  next.addEventListener('click', () => {
+    const maxIndex = cards.length - getVisibleCount();
+    carouselIndex = Math.min(maxIndex, carouselIndex + 1);
+    updateCarousel();
+  });
 
-  // Позволяем общему resize-обработчику пересчитывать позицию.
-  updateActiveCarousel = () => {
-    updateCarousel(false);
-  };
+  updateCarousel();
+
+  // Сохраняем актуальное положение при изменении ширины окна.
+  function handleGalleryCarouselResize() {
+    const carousel = galleryImages.querySelector('.gallery__carousel');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.gallery__carousel-track');
+    const cards = [...track.querySelectorAll('.gallery__image')];
+    const visibleCount =
+      window.innerWidth < 768 ? 1 : window.innerWidth < 992 ? 2 : 3;
+
+    carouselIndex = Math.min(
+      carouselIndex,
+      Math.max(0, cards.length - visibleCount),
+    );
+
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+
+    track.style.transform = `translateX(-${carouselIndex * (cardWidth + gap)}px)`;
+
+    carousel.querySelector('.gallery__arrow--prev').disabled =
+      carouselIndex === 0;
+
+    carousel.querySelector('.gallery__arrow--next').disabled =
+      carouselIndex >= cards.length - visibleCount;
+
+    carousel.querySelector('.gallery__counter-current').textContent =
+      carouselIndex + 1;
+  }
 }
 
 // ========================================
